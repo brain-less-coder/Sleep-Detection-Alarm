@@ -1,22 +1,32 @@
-````md
 # 😴 Sleep Alarm Detector
 
-A real-time sleep detection system using **OpenCV** and **MediaPipe** that monitors eye closure through your webcam.  
-If your eyes stay closed for too long, the system triggers an alarm and displays a red warning overlay.
+A real-time sleep detection system using **OpenCV** and **MediaPipe** that monitors eye movement through your webcam.  
+If your eyes remain closed for too long, the system triggers an alarm and displays visual warnings to help prevent drowsiness during studying, working, or driving.
 
 ---
 
-## Features
+## ✨ Features
 
 - Real-time face and eye tracking
-- Eye Aspect Ratio (EAR) based detection
+- Eye Aspect Ratio (EAR) based sleep detection
 - Alarm sound on prolonged eye closure
-- Live status overlay and face box
-- Simple and lightweight
+- Live face bounding box and status overlay
+- Lightweight and fast
+- Adjustable sensitivity settings
 
 ---
 
-## Requirements
+## 🛠️ Tech Stack
+
+- Python
+- OpenCV
+- MediaPipe
+- NumPy
+- Pygame
+
+---
+
+## 📦 Requirements
 
 - Python 3.8+
 - Webcam
@@ -25,64 +35,88 @@ Install dependencies:
 
 ```bash
 pip install mediapipe==0.10.14 opencv-python numpy pygame
-````
+```
 
 ---
 
-## Setup
+## ⚙️ Setup
 
-Place your alarm sound file (`.mp3` or `.wav`) in the project folder and update:
+1. Clone or download this repository.
+
+2. Add your alarm sound file (`.mp3` or `.wav`) to the project folder.
+
+3. Update the alarm file path in `sleep_alarm.py`:
 
 ```python
 ALARM_SOUND_FILE = r"your_alarm.mp3"
 ```
 
-You can also adjust detection sensitivity in `sleep_alarm.py`:
+4. (Optional) Adjust detection settings:
 
-| Variable             | Default | Description                  |
-| -------------------- | ------- | ---------------------------- |
-| `EAR_THRESHOLD`      | `0.22`  | Lower value = less sensitive |
-| `EYE_CLOSED_SECONDS` | `2.5`   | Time before alarm triggers   |
+| Variable | Default | Description |
+|---|---|---|
+| `EAR_THRESHOLD` | `0.22` | Lower value = less sensitive |
+| `EYE_CLOSED_SECONDS` | `2.5` | Time before alarm triggers |
 
 ---
 
-## Run
+## ▶️ Run the Project
 
 ```bash
 python sleep_alarm.py
 ```
 
-Press **Q** to quit.
+Press **Q** to quit the application.
 
 ---
 
-## How It Works
+## 🧠 How It Works
 
-* Uses **MediaPipe Face Mesh** for facial landmark tracking
-* Calculates **Eye Aspect Ratio (EAR)** for both eyes
-* Starts a timer when eyes appear closed
-* Triggers alarm if eyes remain closed too long
+The system uses **MediaPipe Face Mesh** to detect facial landmarks in real time.
 
----
-
-## Troubleshooting
-
-| Problem                 | Fix                                                   |
-| ----------------------- | ----------------------------------------------------- |
-| Camera not opening      | Change `cv2.VideoCapture(1)` to `cv2.VideoCapture(0)` |
-| Alarm not playing       | Check `ALARM_SOUND_FILE` path                         |
-| Too many false alarms   | Increase `EAR_THRESHOLD`                              |
-| Alarm triggers too fast | Increase `EYE_CLOSED_SECONDS`                         |
+- The Eye Aspect Ratio (EAR) is calculated for both eyes.
+- If the EAR drops below a threshold, the eyes are considered closed.
+- If the eyes remain closed for more than the configured duration, the alarm is triggered.
 
 ---
 
-## Tech Stack
+## 📊 Detection States
 
-* Python
-* OpenCV
-* MediaPipe
-* NumPy
-* Pygame
+| Status | Indicator |
+|---|---|
+| 👁️ Awake | Green face box |
+| 😴 Eyes Closing | Progress timer |
+| 🚨 Sleeping Detected | Red warning overlay + alarm |
 
+---
+
+## 🛠️ Troubleshooting
+
+| Problem | Fix |
+|---|---|
+| Camera not opening | Change `cv2.VideoCapture(1)` to `cv2.VideoCapture(0)` |
+| Alarm not playing | Check `ALARM_SOUND_FILE` path |
+| Too many false alarms | Increase `EAR_THRESHOLD` |
+| Alarm triggers too quickly | Increase `EYE_CLOSED_SECONDS` |
+
+---
+
+## 📁 Project Structure
+
+```bash
+Sleep-Detect-Alarm/
+│
+├── sleep_alarm.py
+├── requirements.txt
+├── README.md
+├── dragon-studio-censor-beep-3-372460.mp3
+└── .gitignore
 ```
-```
+
+---
+
+## 👨‍💻 Author
+
+Developed by Piyush Jain
+
+GitHub: https://github.com/itsPJ0204
