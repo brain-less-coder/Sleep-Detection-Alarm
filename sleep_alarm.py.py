@@ -116,7 +116,7 @@ def main():
         min_detection_confidence=0.6,
         min_tracking_confidence=0.6,
     )
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
     if not cap.isOpened():
         print("[ERROR] Cannot open webcam.")
         return
