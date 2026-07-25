@@ -114,9 +114,3 @@ Sleep-Detect-Alarm/
 ```
 
 ---
-
-## 👨‍💻 Author
-
-Developed by Piyush Jain
-
-GitHub: https://github.com/itsPJ0204
